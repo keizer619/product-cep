@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <Module>
+<Module>
     <ModulePrefs title="Bar Chart"
                  author="WSO2 Gadget Server"
                  height="230"
                  scrolling="true"
                  tags="charts,bar,visualization,data"
                  description="A generic Bar Chart gadget, that takes a json datasource as an input. It can be configured to fetch data in defined intervals. This gadget can be used to create dashboards with statistical data. This gadget can be reused as an iframe in any web page as it is self contained.">
-     </ModulePrefs>
+    </ModulePrefs>
     <UserPref name="dataSource"
               display_name="Data Source"
               default_value="/portal/gadgets/bar-chart/datasource/dataFile4.jag">
@@ -20,7 +20,7 @@
               default_value="No">
     </UserPref>
     <Content type="html">
-    <![CDATA[
+        <![CDATA[
  <html>
  <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -33,8 +33,14 @@
 	<script language="javascript" type="text/javascript" src="js/vega.js"></script>
 	<script language="javascript" type="text/javascript" src="js/igviz.js"></script>
 	<script language="javascript" type="text/javascript" src="js/gadgetconf.js"></script>
-  <script language="javascript" type="text/javascript" src="js/outputAdapterUiLibrary.js"></script>
+    <script language="javascript" type="text/javascript" src="js/outputAdapterUiLibrary.js"></script>
 	<script language="javascript" type="text/javascript" src="js/main.js"></script>
+	<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type="text/javascript">
+        google.load('visualization', '1', {
+            'packages': ['map', 'geochart']
+        });
+    </script>
 
 </head>
 
@@ -44,7 +50,7 @@
 </html>
 
     ]]>
-</Content>
+    </Content>
 </Module>
 
 

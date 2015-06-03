@@ -35,6 +35,8 @@
 
         if (config.chartType == "bar") {
             this.drawBarChart(chartObject, canvas, config, dataTable);
+        } else if (config.chartType == "map") {
+            this.drawMap(canvas, config, dataTable);
         } else if (config.chartType == "scatter") {
             this.drawScatterPlot(chartObject);
         } else if (config.chartType == "line") {
@@ -2232,7 +2234,7 @@
             tempArray.push(str);
             mainStrArray.push(tempArray);
         }
-        ;
+
 
         //hardcoded
         // alert(divId);
