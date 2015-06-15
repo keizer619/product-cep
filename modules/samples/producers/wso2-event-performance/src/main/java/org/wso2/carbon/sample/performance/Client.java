@@ -62,21 +62,34 @@ public class Client {
     private static void publishEvents(DataPublisher dataPublisher, long eventCount, long elapsedCount,
                                       long warmUpCount) {
         long counter = 0;
-        Random randomGenerator = new Random();
-        String streamId = "org.wso2.event.sensor.stream:1.0.0";
+        // Random randomGenerator = new Random();
+        String doorStreamId = "deviceDoorStream:1.0.0";
+        String healthStreamId = "deviceHealthStream:1.0.0";
+
         long lastTime = System.currentTimeMillis();
         DecimalFormat decimalFormat = new DecimalFormat("#");
 
         while (counter < eventCount) {
-            Event event = new Event(streamId, System.currentTimeMillis(),
-                    new Object[]{System.currentTimeMillis(), randomGenerator.nextBoolean(), randomGenerator.nextInt(),
-                            "temperature-" + counter},
-                    new Object[]{randomGenerator.nextDouble(), randomGenerator.nextDouble()},
-                    new Object[]{randomGenerator.nextFloat(), randomGenerator.nextDouble()});
 
-            dataPublisher.publish(event);
+            int deviceId = (int) (counter % 100);
 
-            if ((counter > warmUpCount) && ((counter + 1) % elapsedCount == 0)) {
+
+            Event doorEvent = new Event(doorStreamId, System.currentTimeMillis(),
+                    new Object[]{},
+                    new Object[]{},
+                    new Object[]{4, deviceId, 70, "2015 - 02 - 17 16:00:39", 70, "2015 - 02 - 17 16:00:39", "2015 - 02 - 17 16:00:39", 45});
+
+            dataPublisher.publish(doorEvent);
+
+
+            Event healthEvent = new Event(healthStreamId, System.currentTimeMillis(),
+                    new Object[]{},
+                    new Object[]{},
+                    new Object[]{100, deviceId, 45, 70, "2015 - 02 - 17 16:00:39", 4, 4, 2.3, 6.6, 8.9, false, 45, 45, "2015 - 02 - 17 16:00:39"});
+
+            dataPublisher.publish(healthEvent);
+
+            if ((counter > warmUpCount) && ((counter + 2) % elapsedCount == 0)) {
 
                 long currentTime = System.currentTimeMillis();
                 long elapsedTime = currentTime - lastTime;
@@ -87,7 +100,7 @@ public class Client {
                         + " events per second.");
             }
 
-            counter++;
+            counter = counter + 2;
         }
     }
 }

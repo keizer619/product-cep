@@ -28,9 +28,9 @@
     <property name="port" value="7611"/>
     <property name="username" value="admin"/>
     <property name="password" value="admin"/>
-    <property name="eventCount" value="100000"/>
-    <property name="elapsedCount" value="10000"/>
-    <property name="warmUpCount" value="10000"/>
+    <property name="eventCount" value="10000000"/>
+    <property name="elapsedCount" value="100000"/>
+    <property name="warmUpCount" value="100000"/>
 
 
     <path id="javac.classpath">
